@@ -27,7 +27,19 @@
       <input type="submit" value="Search" />
     </form>
 
-    <div class="movies-list">MOVIES</div>
+    <div class="movies-list">
+      <div class="movie" v-for="movie in movies" :key="movie.imdbID">
+        <router-link :to="'/movie/' + movie.imdbID" class="movie-link">
+          <div class="product-image">
+            <img :src="movie.Poster" alt="Movie Poster">
+            <div class="type">{{movie.Type}}</div>
+            <p class="year">{{movie.Year}}</p>
+            <h3>{{movie.Title}}</h3>
+          </div>
+
+        </router-link>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -45,7 +57,9 @@ export default {
         fetch(`http://www.omdbapi.com/?apikey=${env.APIKEY}&s=${search.value}`)
           .then((response) => response.json())
           .then((data) => {
-            console.log(data);
+            movies.value = data.Search;
+            search.value = "";
+            console.log(data)
           });
       }
     };
@@ -138,6 +152,10 @@ export default {
         }
       }
     }
+  }
+  .movies-list {
+    display: flex;
+    flex-wrap: wrap;
   }
 }
 </style>
