@@ -1,15 +1,22 @@
 <template>
   <header>
     <router-link to="/">
-      <h1>
-        <span>Movies</span>App
-      </h1>
+  <Navigation />
     </router-link>
   </header>
   <main>
   <router-view/>
   </main>
 </template>
+
+<script>
+import Navigation from "@/components/ui/Navigation";
+export default {
+  components: {
+    Navigation
+  }
+}
+</script>
 
 <style lang="scss">
 * {
@@ -39,7 +46,7 @@ header {
   box-shadow: 0px 0px 6px rgba(0,0,0, 0.1);
 
   h1 {
-    color: #fff;
+    color: #e5e5e5;
     font-size: 28px;
 
     span {
